@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audio_buffering_demo/models/song.dart';
-import 'package:audio_buffering_demo/presentation/widgets/audio_track_player_widget.dart';
+import 'package:audio_buffering_demo/presentation/widgets/audio_track_player_widget2.dart';
 
 class AudioBufferingDemoView extends StatefulWidget {
   const AudioBufferingDemoView({super.key});
@@ -22,10 +22,13 @@ class _AudioBufferingDemoViewState extends State<AudioBufferingDemoView> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             for (int i = 0; i < Song.songs.length; i++)
-              AudioTrackPlayerWidget(
-                index: i,
-                url: Song.songs[i].url,
-                fileName: Song.songs[i].filename,
+              AudioTrackPlayerWidget2(
+                  index: i,
+                  url: Song.songs[i].url,
+                  fileName: Song.songs[i].filename,
+                  errorBuilder: (context, _, stackTrace) {
+                    return const Text("Error loading audio");
+                  }
               ),
           ],
         ),
